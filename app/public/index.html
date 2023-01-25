@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TestTaskLisatrot</title>
+    </head>
+    <body>
+        <nav>
+            <a href="#home" onclick="home();">
+                Write a message
+            </a><br/>
+            <a href="#show" onclick="show();">
+                Show all messages
+            </a>
+        </nav>
+        <h1>WebSocket</h1>
+        <div id="app">
+            <form action="" onsubmit="sendMessage(event)">
+                <input type="text" id="messagePost" autocomplete="off"/>
+                <button>Send</button>
+            </form>
+            <ul id='messages'>
+            </ul>
+        </div id="app">
+        <script type="text/javascript" src="static/index.js"></script>
+    </body>
+</html>
