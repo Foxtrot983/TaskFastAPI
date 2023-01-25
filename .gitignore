@@ -3,3 +3,7 @@ FastApiTestTask.code-workspace
 task.txt
 /__pycache__
 /app/__pycache__
+/app/crud.py
+/app/models.py
+/app/schemas.py
+/app/db.py
