@@ -15,6 +15,11 @@ async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     counter = 0
     while True:
-        data = await websocket.receive_json()
-        await websocket.send_json(data)
+        counter += 1
+        text = await websocket.receive_text()
+        data = {
+            "id": counter,
+            "data": text
+        }
         print(data)
+        await websocket.send_json(data)
