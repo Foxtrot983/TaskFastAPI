@@ -1,16 +1,18 @@
 let ws = new WebSocket("ws://localhost:8000/ws");
-//let array = new JSON //array = [{1:'string', 2:"string"}]
 let array = [];
-//var counter = 1;
 app = document.getElementById("app")
 ws.onmessage = function(event) {
-    //let messages = document.getElementById('messages')
-    array.push(event.data)
+    message = JSON.parse(event.data)
+    console.log(event.data)
+    array.push(message)
+    console.log(message)
+    alert(typeof(event.data))
+    alert(array)
+    alert(typeof(array))
 };
 
 function sendMessage(event) {
     let input = document.getElementById("messagePost")
-    //let view = JSON.stringify({id: counter, data: input.value})
     ws.send(input.value)
     alert(input.value)
     input.value = ''
@@ -19,6 +21,15 @@ function sendMessage(event) {
 function home(){
     app.innerHTML = '<form action="" onsubmit="sendMessage(event)"><input type="text" id="messagePost" autocomplete="off"/><button>Send</button></form><ul id="messages"></ul>'
 }
+
 function show(){
-    app.innerHTML = array
+    textMassive = ''
+    for(let i=0;i<array.length;i++){
+        temp = JSON.parse(array[i])
+        id = temp['id']
+        data = temp['data']
+        text = `<h6>${id}.  ${data}</h6><br/>`
+        textMassive = textMassive + text
+    }
+    app.innerHTML = textMassive
 }

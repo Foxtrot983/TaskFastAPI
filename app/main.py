@@ -1,3 +1,5 @@
+import json
+
 from fastapi import FastAPI, WebSocket
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -19,7 +21,7 @@ async def websocket_endpoint(websocket: WebSocket):
         text = await websocket.receive_text()
         data = {
             "id": counter,
-            "data": text
+            "data": text,
         }
-        print(data)
-        await websocket.send_json(data)
+        json_string = json.dumps(data, indent=4)
+        await websocket.send_json(json_string)
