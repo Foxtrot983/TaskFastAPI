@@ -3,18 +3,12 @@ let array = [];
 app = document.getElementById("app")
 ws.onmessage = function(event) {
     message = JSON.parse(event.data)
-    console.log(event.data)
     array.push(message)
-    console.log(message)
-    alert(typeof(event.data))
-    alert(array)
-    alert(typeof(array))
 };
 
 function sendMessage(event) {
     let input = document.getElementById("messagePost")
     ws.send(input.value)
-    alert(input.value)
     input.value = ''
     event.preventDefault()
 }
@@ -28,7 +22,7 @@ function show(){
         temp = JSON.parse(array[i])
         id = temp['id']
         data = temp['data']
-        text = `<h6>${id}.  ${data}</h6><br/>`
+        text = `<p>${id}.  ${data}</p><br/>`
         textMassive = textMassive + text
     }
     app.innerHTML = textMassive
